@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# I don't check bun -> I commented it
+# bun run lint
+# bun run lint.perf
