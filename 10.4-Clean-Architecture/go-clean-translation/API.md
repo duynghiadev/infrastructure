@@ -91,10 +91,51 @@ The service uses standard language codes for the `source` and `destination` para
 - `ko`: Korean
 - `zh`: Chinese
 
-## Error Codes
+## Error Handling
 
-- `400`: Bad Request - Invalid input parameters
-- `500`: Internal Server Error - Server-side error
+### HTTP Status Codes
+
+#### 400 Bad Request
+
+Occurs when:
+
+- Missing required fields (`original_text`, `source`, or `destination`)
+- Invalid language codes
+- Empty text for translation
+- Invalid JSON format in request body
+
+Example response:
+
+```json
+{
+  "error": "Invalid request: missing required field 'original_text'"
+}
+```
+
+#### 500 Internal Server Error
+
+Occurs when:
+
+- Database connection fails
+- Google Translate service is unavailable
+- Server encounters an unexpected error
+- Memory or processing limitations are reached
+
+Example response:
+
+```json
+{
+  "error": "Internal server error: translation service unavailable"
+}
+```
+
+### Error Prevention
+
+1. Always validate input parameters before making API calls
+2. Ensure language codes are supported
+3. Check that text length is within reasonable limits
+4. Handle network timeouts appropriately
+5. Implement retry logic for temporary failures
 
 ## Notes
 
