@@ -1,3 +1,5 @@
+# [Hướng dẫn implement Clean Architecture cụ thể với diagram và source code](https://www.youtube.com/watch?v=Y_Te5Q3gxMI)
+
 # Clean Architecture in Microservices Demo
 
 ## Introduction
@@ -10,6 +12,7 @@ This repo was built up with three services: **Task**, **User** and **Auth**. Eac
 ![Clean Architecture Flow](./statics/img/clean-architecture-flow.jpg)
 
 ## Folder structure
+
 Let's focus on directories in [`/services`](./services):
 
 ```
@@ -58,17 +61,20 @@ Protobuf and generated files at [proto folder](./proto):
 Instead of separating to 3 repos on GitHub, I merged them to a single repo to give more transparent and convenience to build up the demo.
 But the services are isolated with each others.
 
-Service stacks: 
+Service stacks:
+
 - GIN (for HTTP service)
 - gRPC (internal rpc)
 - MySQL (with GORM)
 - JWT
 
 ### Task Service
+
 - REST API: CRUD Task (require authorization for all apis)
 - gRPC: None
 
 ### User Service
+
 - REST API:
   - Get user profile (require authorization)
 - gRPC:
@@ -76,6 +82,7 @@ Service stacks:
   - Get many public user infos by IDs
 
 ### Auth Service
+
 - REST API:
   - Register new user account
   - Login (issue JWT)
@@ -83,18 +90,23 @@ Service stacks:
   - Introspect Access Token
 
 ## The Diagrams
+
 Some of main diagrams to demonstration how they work together:
 
 ### Create Task
+
 ![Create Task Diagram](./statics/img/create-tasks-diagram.png)
 
 ### Fetch Tasks
+
 ![Fetch Task Diagram](./statics/img/get-tasks-diagram.png)
 
 ## How to run this demo
 
 ### 1. Clone and start the service with Docker-Compose
+
 Open your terminal/console:
+
 ```shell
 git clone https://github.com/viettranx/microservices-clean-architecture-demo
 cd microservices-clean-architecture-demo
@@ -105,12 +117,14 @@ docker compose up --force-recreate --detach --build app
 If everything is ok, the service will be running at on `localhost:3000`
 
 Print all ENV variables:
+
 ```bash
 docker compose exec app ./demo_app outenv
 ```
 
 ### 2. Make some requests
- - Register new account
+
+- Register new account
 
 ```shell
 curl --location 'http://localhost:3000/v1/register' \
@@ -122,6 +136,7 @@ curl --location 'http://localhost:3000/v1/register' \
     "first_name": "Demo "
 }'
 ```
+
 ```shell
 {"data": true}
 ```
@@ -136,7 +151,9 @@ curl --location 'http://localhost:3000/v1/authenticate' \
     "password": "12345678"
 }'
 ```
+
 The access token will return like this
+
 ```shell
 {
   "data": {
@@ -149,6 +166,7 @@ The access token will return like this
 ```
 
 - Create a new task
+
 ```shell
 curl --location 'http://localhost:3000/v1/tasks' \
 --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlNTMycW9zOGpqTTIiLCJleHAiOjE2ODAyNTI0MDgsIm5iZiI6MTY3OTY0NzYwOCwiaWF0IjoxNjc5NjQ3NjA4LCJqdGkiOiI3OTEzYzhjYy05NmI0LTQ3ZmUtOWIzZi01MTUwZTk5NTM3MGUifQ.51d6zVuGtcAbw2poEWV4TffhEqJG8uxMOcGq7Mt8sZA' \
@@ -160,15 +178,18 @@ curl --location 'http://localhost:3000/v1/tasks' \
 ```
 
 New Task id will be returned
+
 ```shell
 {"data":"e532sJ4XpCi8"}
 ```
 
 - Fetch list tasks
+
 ```shell
 curl --location 'http://localhost:3000/v1/tasks' \
 --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJnR3pUQlVScWhhakciLCJleHAiOjE2ODAwNjQzNzcsIm5iZiI6MTY3OTQ1OTU3NywiaWF0IjoxNjc5NDU5NTc3LCJqdGkiOiI5Y2U4ZjUwMC1hYTczLTQ1MTYtYmJhYy04OTBiNDBjNDVkMDAifQ.VsqU8_Gn_EMwKAYW-En3BG58nWTREG6s3zCVXu7sZgQ'
 ```
+
 ```json
 {
   "data": [
