@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 
@@ -12,20 +13,28 @@ import (
 )
 
 func main() {
-	// Checking that an environment variable is present or not.
-	mysqlConnStr, ok := os.LookupEnv("MYSQL_CONNECTION")
-
-	if !ok {
-		log.Fatalln("Missing MySQL connection string.")
-	}
-
-	dsn := mysqlConnStr
-	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
-
+	// Load environment variables from .env file
+	err := godotenv.Load()
 	if err != nil {
-		log.Fatalln("Cannot connect to MySQL:", err)
+		log.Println("No .env file found, using system environment variables.")
 	}
 
+	mysqlConnStr := os.Getenv("MYSQL_CONNECTION")
+	if mysqlConnStr == "" {
+		log.Fatalln("Missing MySQL connection string. Please set MYSQL_CONNECTION environment variable.")
+	}
+
+	log.Println("MYSQL_CONNECTION:", mysqlConnStr)
+
+	// Connect to MySQL
+	db, err := gorm.Open(mysql.Open(mysqlConnStr), &gorm.Config{})
+	if err != nil {
+		log.Fatalf("Cannot connect to MySQL: %v\n", err)
+	}
+
+	log.Println("Connected to MySQL successfully.")
+
+	// Set up Gin router
 	router := gin.Default()
 
 	v1 := router.Group("/v1")
@@ -37,5 +46,12 @@ func main() {
 		v1.DELETE("/items/:id", todotrpt.HandleDeleteAnItem(db)) // delete an item by ID
 	}
 
-	router.Run()
+	// Start server
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080" // Default port
+	}
+
+	log.Printf("Server is running on port %s...\n", port)
+	router.Run(":" + port)
 }
