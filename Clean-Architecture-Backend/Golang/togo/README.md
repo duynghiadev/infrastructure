@@ -1,3 +1,5 @@
+## Reference: [golang microservice github](https://viblo.asia/p/dung-golang-microservice-boilerplate-theo-clean-architecture-1Je5EzG0KnL)
+
 ## GOLANG TODOS APPLICATION
 
 ### Technical stuff
@@ -131,4 +133,4 @@ go test -v ./integration-tests
 
 ### Conclusion
 
-First time I created a new microservice with Go from scratch, It gave me a challenge but I did it, tried to remove the old mindset in another architecture then go to clean architecture. I love it :heart: :heart: .
+First time I created a new microservice with Go from scratch, It gave me a challenge but I did it, tried to remove the old mindset in another architecture then go to clean architecture. I love it ❤️ ❤️ .
