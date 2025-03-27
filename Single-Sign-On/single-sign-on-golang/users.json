@@ -1,0 +1,9 @@
+[
+  {
+    "id": "123456",
+    "email": "user@example.com",
+    "password": "password123",
+    "token": "mocked_jwt_token_123456",
+    "roles": ["admin", "user"]
+  }
+]
