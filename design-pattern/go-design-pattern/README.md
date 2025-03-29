@@ -1,5 +1,7 @@
 # [Tutorial 23 Classic Design Pattern with Golang](https://www.youtube.com/playlist?list=PLOsM_3jFFQRmNCt68hxCdxi8i_fUx2wTZ)
 
+_Each doing exercise an example, so open video and see again to understanding pattern of each lession_
+
 # Go Design Pattern
 
 23 Classic Design Patterns demo source code in Go (Golang)
