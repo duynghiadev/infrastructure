@@ -1,8 +1,11 @@
+# [Tutorial](https://www.youtube.com/playlist?list=PLOsM_3jFFQRmNCt68hxCdxi8i_fUx2wTZ)
+
 # Go Design Pattern
 
 23 Classic Design Patterns demo source code in Go (Golang)
 
 ### Creational Patterns
+
 - [Factory Method](./creational/factory-method)
 - [Abstract Factory](./creational/abstract-factory)
 - [Builder](./creational/builder)
@@ -10,6 +13,7 @@
 - [Singleton](./creational/singleton)
 
 ### Structural Patterns
+
 - [Adapter](./structural/adapter)
 - [Bridge](./structural/bridge)
 - [Composite](./structural/composite)
@@ -19,6 +23,7 @@
 - [Proxy](./structural/proxy)
 
 ### Behavioral Patterns
+
 - [Chain of Responsibility](./behavioral/chain-of-responsibility)
 - [Command](./behavioral/command)
 - [Interpreter](./behavioral/interpreter)
