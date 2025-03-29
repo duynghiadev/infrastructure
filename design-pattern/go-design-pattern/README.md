@@ -1,4 +1,4 @@
-# [Tutorial](https://www.youtube.com/playlist?list=PLOsM_3jFFQRmNCt68hxCdxi8i_fUx2wTZ)
+# [Tutorial 23 Classic Design Pattern with Golang](https://www.youtube.com/playlist?list=PLOsM_3jFFQRmNCt68hxCdxi8i_fUx2wTZ)
 
 # Go Design Pattern
 
