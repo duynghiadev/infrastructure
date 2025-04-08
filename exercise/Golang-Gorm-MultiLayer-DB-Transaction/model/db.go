@@ -11,7 +11,7 @@ import (
 	"gorm.io/gorm/logger"
 )
 
-//DBConnection -> return db instance
+// DBConnection -> return db instance
 func DBConnection() (*gorm.DB, error) {
 	USER := "root"
 	PASS := "root"

@@ -6,7 +6,6 @@ import (
 )
 
 func main() {
-
 	db, _ := model.DBConnection()
 	route.SetupRoutes(db)
 }

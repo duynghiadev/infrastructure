@@ -11,7 +11,7 @@ import (
 	"gorm.io/gorm"
 )
 
-//SetupRoutes : all the routes are defined here
+// SetupRoutes : all the routes are defined here
 func SetupRoutes(db *gorm.DB) {
 	httpRouter := gin.Default()
 

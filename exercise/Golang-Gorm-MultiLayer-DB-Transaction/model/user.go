@@ -9,7 +9,7 @@ type User struct {
 	Wallet float64 `json:"wallet"`
 }
 
-//MoneyTransfer --- MoneyTransfer Struct
+// MoneyTransfer --- MoneyTransfer Struct
 type MoneyTransfer struct {
 	Receiver uint    `json:"receiver"`
 	Giver    uint    `json:"giver"`

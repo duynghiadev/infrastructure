@@ -21,7 +21,7 @@ type userController struct {
 	userService service.UserService
 }
 
-//NewUserController -> returns new user controller
+// NewUserController -> returns new user controller
 func NewUserController(s service.UserService) UserController {
 	return userController{
 		userService: s,
