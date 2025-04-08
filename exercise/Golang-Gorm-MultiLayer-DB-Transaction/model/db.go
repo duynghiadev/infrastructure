@@ -14,7 +14,7 @@ import (
 // DBConnection -> return db instance
 func DBConnection() (*gorm.DB, error) {
 	USER := "root"
-	PASS := "root"
+	PASS := "duynghia123"
 	HOST := "localhost"
 	PORT := "3306"
 	DBNAME := "db-transaction"

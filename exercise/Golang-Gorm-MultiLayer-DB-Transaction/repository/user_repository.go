@@ -63,7 +63,19 @@ func (u userRepository) IncrementMoney(receiver uint, amount float64) error {
 }
 
 func (u userRepository) DecrementMoney(giver uint, amount float64) error {
-	log.Print("[UserRepository]...Decrement Money")
-	return errors.New("something")
-	// return u.DB.Model(&model.User{}).Where("id=?", giver).Update("wallet", gorm.Expr("wallet - ?", amount)).Error
+	log.Print("[UserRepository] Decrementing money from user ID:", giver)
+
+	result := u.DB.Model(&model.User{}).
+		Where("id = ? AND wallet >= ?", giver, amount).
+		Update("wallet", gorm.Expr(" wallet - ?", amount))
+
+	if result.Error != nil {
+		return result.Error
+	}
+
+	if result.RowsAffected == 0 {
+		return errors.New("insufficient funds or user not found")
+	}
+
+	return nil
 }
