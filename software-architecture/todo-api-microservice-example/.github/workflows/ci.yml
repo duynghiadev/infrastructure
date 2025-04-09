@@ -1,0 +1,27 @@
+name: CI
+on: push
+jobs:
+  all:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: 1.24.x
+          check-latest: true
+          cache: true
+          cache-dependency-path: |
+            **/go.sum
+            internal/tools/go.sum
+      - name: Lint
+        run: make lint
+      - name: Make Docker images
+        run: make docker
+      - name: Test
+        run: make test
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v5
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

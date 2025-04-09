@@ -1,0 +1,25 @@
+version: 2
+updates:
+  # Go
+  - package-ecosystem: "gomod"
+    directories:
+      - "/"
+      - "/internal/tools/"
+    schedule:
+      interval: "weekly"
+  # Docker
+  - package-ecosystem: "docker"
+    directory: "/dockerfiles/"
+    schedule:
+      interval: "weekly"
+    groups:
+      go-versions:
+        applies-to: version-updates
+        patterns:
+          - "debian*"
+          - "golang*"
+  # Github Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
