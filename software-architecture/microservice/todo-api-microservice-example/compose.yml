@@ -34,7 +34,15 @@ services:
         condition: service_healthy
     volumes:
       - ./db/migrations/:/db/
-    entrypoint: ["/tern", "migrate", "--migrations", "/db/", "--conn-string", "postgres://user:password@postgres:5432/dbname?sslmode=disable"]
+    entrypoint:
+      [
+        "/tern",
+        "migrate",
+        "--migrations",
+        "/db/",
+        "--conn-string",
+        "postgres://user:password@postgres:5432/dbname?sslmode=disable",
+      ]
   vault:
     image: vault:1.12.4
     ports:
@@ -52,7 +60,11 @@ services:
     environment:
       - discovery.type=single-node
     healthcheck:
-      test: ["CMD-SHELL", "curl --silent --fail localhost:9200/_cluster/health || exit 1"]
+      test:
+        [
+          "CMD-SHELL",
+          "curl --silent --fail localhost:9200/_cluster/health || exit 1",
+        ]
       interval: 20s
       timeout: 1s
       retries: 5
@@ -62,7 +74,17 @@ services:
     depends_on:
       elasticsearch:
         condition: service_healthy
-    entrypoint: ["curl", "-X", "PUT", "-H", "Content-Type: application/json", "http://elasticsearch:9200/tasks", "-d", "{\"mappings\":{\"properties\":{\"id\":{\"type\":\"keyword\"},\"description\":{\"type\":\"text\"}}}}"]
+    entrypoint:
+      [
+        "curl",
+        "-X",
+        "PUT",
+        "-H",
+        "Content-Type: application/json",
+        "http://elasticsearch:9200/tasks",
+        "-d",
+        '{"mappings":{"properties":{"id":{"type":"keyword"},"description":{"type":"text"}}}}',
+      ]
   memcached:
     image: memcached:1.6.19-alpine3.17
     ports:

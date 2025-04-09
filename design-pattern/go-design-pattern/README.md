@@ -2,6 +2,8 @@
 
 _Each doing exercise an example, so open video and see again to understanding pattern of each lession_
 
+[Playlist Tutorial](https://www.youtube.com/playlist?list=PLOsM_3jFFQRmNCt68hxCdxi8i_fUx2wTZ)
+
 # Go Design Pattern
 
 23 Classic Design Patterns demo source code in Go (Golang)
