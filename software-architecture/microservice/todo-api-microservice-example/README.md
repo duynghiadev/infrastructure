@@ -1,5 +1,11 @@
 # "ToDo API" Microservice Example
 
+## Description
+
+Video tutorials discussing tips, tricks, best practices and guidelines to follow when when building Microservices in Go/Golang using Domain Driven Design and Hexagonal Architecture.
+
+#golang #microservices #hexagonal
+
 ## Introduction
 
 Welcome! 👋
