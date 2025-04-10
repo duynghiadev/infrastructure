@@ -1,0 +1,17 @@
+.Nav {
+    height: 5rem;
+    background: rgba(143, 209, 235, 0.781);
+    border-bottom: 0.2rem solid rgba(143, 209, 235, 0.89);
+
+}
+
+.Nav__container {
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    height: 5rem
+}
+
+.Nav__container p {
+    cursor: pointer;
+}
