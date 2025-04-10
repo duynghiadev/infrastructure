@@ -6,6 +6,8 @@ Video tutorials discussing tips, tricks, best practices and guidelines to follow
 
 #golang #microservices #hexagonal
 
+👉 Playlist on Youtube: [Software Architecture and System Design in Go/Golang](https://www.youtube.com/playlist?list=PL7yAAGMOat_GCd12Lrv_evJ3Zhv1dl8B-)
+
 ## Introduction
 
 Welcome! 👋
