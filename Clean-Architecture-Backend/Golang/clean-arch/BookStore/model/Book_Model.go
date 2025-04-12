@@ -1,6 +1,7 @@
 package model
 
 type Book struct {
-	Title  string
-	Author string
+	ID     string `json:"id"`
+	Title  string `json:"title"`
+	Author string `json:"author"`
 }

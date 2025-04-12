@@ -31,3 +31,15 @@ func (service *BookServiceImpl) TestBookService(ctx context.Context) {
 	service.BookDatalayer.TestBookDatalayer(ctx)
 
 }
+
+func (service *BookServiceImpl) CreateBook(ctx context.Context, book *model.Book) (*model.Book, error) {
+	return service.BookDatalayer.CreateBook(ctx, book)
+}
+
+func (service *BookServiceImpl) GetBookByID(ctx context.Context, id string) (*model.Book, error) {
+	return service.BookDatalayer.GetBookByID(ctx, id)
+}
+
+func (service *BookServiceImpl) DeleteBook(ctx context.Context, id string) error {
+	return service.BookDatalayer.DeleteBook(ctx, id)
+}

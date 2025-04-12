@@ -4,7 +4,7 @@ GET http://localhost:8090/test
 ### Print Author
 GET http://localhost:8090/printAuthor
 
-### Example Book Request (for future implementation)
+### Create Book
 POST http://localhost:8090/books
 Content-Type: application/json
 
@@ -13,8 +13,11 @@ Content-Type: application/json
     "author": "Robert C. Martin"
 }
 
-### Example Get Book by ID (for future implementation)
+### Get All Book
+GET http://localhost:8090/books
+
+### Get Book by ID
 GET http://localhost:8090/books/1
 
-### Example Delete Book (for future implementation)
+### Delete Book by ID
 DELETE http://localhost:8090/books/1
