@@ -23,6 +23,7 @@ func NewBookController(echo *echo.Echo, bookServiceObject intf.BookService) {
 	echo.POST("/books", bookControllerObject.CreateBook)
 	echo.GET("/books/:id", bookControllerObject.GetBook)
 	echo.DELETE("/books/:id", bookControllerObject.DeleteBook)
+	echo.GET("/books", bookControllerObject.GetAllBooks)
 }
 
 func (controllerObj *BookController) PrintAuthor(ec echo.Context) error {
@@ -70,4 +71,12 @@ func (controllerObj *BookController) DeleteBook(ec echo.Context) error {
 		return ec.JSON(http.StatusInternalServerError, map[string]string{"error": err.Error()})
 	}
 	return ec.JSON(http.StatusOK, map[string]string{"message": "Book deleted successfully"})
+}
+
+func (controllerObj *BookController) GetAllBooks(ec echo.Context) error {
+	books, err := controllerObj.bookService.GetAllBooks(ec.Request().Context())
+	if err != nil {
+		return ec.JSON(http.StatusInternalServerError, map[string]string{"error": "Failed to fetch books: " + err.Error()})
+	}
+	return ec.JSON(http.StatusOK, books)
 }

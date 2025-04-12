@@ -44,3 +44,11 @@ func (datalayer *BookDatalayerImpl) DeleteBook(ctx context.Context, id string) e
 	delete(datalayer.books, id)
 	return nil
 }
+
+func (datalayer *BookDatalayerImpl) GetAllBooks(ctx context.Context) ([]*model.Book, error) {
+	books := make([]*model.Book, 0, len(datalayer.books))
+	for _, book := range datalayer.books {
+		books = append(books, book)
+	}
+	return books, nil
+}

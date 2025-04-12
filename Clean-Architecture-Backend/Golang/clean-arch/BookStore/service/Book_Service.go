@@ -43,3 +43,7 @@ func (service *BookServiceImpl) GetBookByID(ctx context.Context, id string) (*mo
 func (service *BookServiceImpl) DeleteBook(ctx context.Context, id string) error {
 	return service.BookDatalayer.DeleteBook(ctx, id)
 }
+
+func (service *BookServiceImpl) GetAllBooks(ctx context.Context) ([]*model.Book, error) {
+	return service.BookDatalayer.GetAllBooks(ctx)
+}
