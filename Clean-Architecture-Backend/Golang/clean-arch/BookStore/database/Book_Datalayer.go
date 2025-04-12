@@ -1,7 +1,7 @@
 package database
 
 import (
-	"cleanapp/BookStore/intf"
+	intf "cleanapp/BookStore/interface"
 	"context"
 	"fmt"
 )

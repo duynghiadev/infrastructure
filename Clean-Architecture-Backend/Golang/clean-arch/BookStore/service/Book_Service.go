@@ -1,7 +1,7 @@
 package service
 
 import (
-	"cleanapp/BookStore/intf"
+	intf "cleanapp/BookStore/interface"
 	"cleanapp/BookStore/model"
 	"context"
 	"fmt"

@@ -1,7 +1,7 @@
 package controller
 
 import (
-	"cleanapp/BookStore/intf"
+	intf "cleanapp/BookStore/interface"
 	"fmt"
 
 	"github.com/labstack/echo"
