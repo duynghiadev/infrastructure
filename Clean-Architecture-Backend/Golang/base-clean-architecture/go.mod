@@ -3,7 +3,6 @@ module kienmatu/go-todos
 go 1.17
 
 require (
-	github.com/gorilla/handlers v1.5.1
 	github.com/labstack/echo/v4 v4.7.2
 	golang.org/x/crypto v0.0.0-20220315160706-3147a52a75dd
 )
@@ -27,7 +26,6 @@ require (
 	github.com/mattn/go-colorable v0.1.11 // indirect
 	github.com/mattn/go-isatty v0.0.14 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
-	github.com/satori/go.uuid v1.2.0 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasttemplate v1.2.1 // indirect
 	golang.org/x/net v0.0.0-20211112202133-69e39bad7dc2 // indirect
@@ -38,9 +36,7 @@ require (
 )
 
 require (
-	github.com/Rosaniline/gorm-ut v0.0.0-20190331143837-786b71894576
 	github.com/caarlos0/env v3.5.0+incompatible
-	github.com/felixge/httpsnoop v1.0.1 // indirect
 	github.com/go-playground/validator/v10 v10.10.1
 	github.com/go-test/deep v1.0.8
 	github.com/golang-jwt/jwt v3.2.2+incompatible
