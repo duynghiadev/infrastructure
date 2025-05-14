@@ -10,10 +10,13 @@ import (
 )
 
 func GetPostgresInstance(cfg *config.Configuration, migrate bool) *gorm.DB {
-	//dsn = "host=localhost user=gorm password=gorm dbname=gorm port=9920 sslmode=disable TimeZone=Asia/Shanghai"
-	dsn := cfg.DatabaseConnectionURL
-	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	dsn := fmt.Sprintf("host=localhost user=%s password=%s dbname=%s port=5432 sslmode=disable TimeZone=Asia/Ho_Chi_Minh",
+		"postgres",
+		"duynghia123",
+		"todos",
+	)
 
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		fmt.Println(err)
 		panic(err)
@@ -21,9 +24,6 @@ func GetPostgresInstance(cfg *config.Configuration, migrate bool) *gorm.DB {
 
 	if migrate {
 		db.AutoMigrate(&models.User{}, &models.Todo{})
-		// if err != nil {
-		// 	panic("Error when run migrations")
-		// }
 	}
 	return db
 }
