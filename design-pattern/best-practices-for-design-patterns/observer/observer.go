@@ -16,35 +16,35 @@ type Subject interface {
 
 // StockTicker Specific subject: stock quotation
 type StockTicker struct {
-	observers []Observer
-	symbol    string
-	price     float64
+	Observers []Observer
+	Symbol    string
+	Price     float64
 }
 
 func (s *StockTicker) Attach(observer Observer) {
-	s.observers = append(s.observers, observer)
+	s.Observers = append(s.Observers, observer)
 }
 
 func (s *StockTicker) Detach(observer Observer) {
-	for i, o := range s.observers {
+	for i, o := range s.Observers {
 		if o == observer {
-			s.observers = append(s.observers[:i], s.observers[i+1:]...)
+			s.Observers = append(s.Observers[:i], s.Observers[i+1:]...)
 			return
 		}
 	}
 }
 
 func (s *StockTicker) Notify(message string) {
-	for _, o := range s.observers {
+	for _, o := range s.Observers {
 		o.Update(message)
 	}
 }
 
 // Investor Specific observer: investor
 type Investor struct {
-	name string
+	Name string
 }
 
 func (i *Investor) Update(message string) {
-	fmt.Printf("%s received: %s\n", i.name, message)
+	fmt.Printf("%s received: %s\n", i.Name, message)
 }

@@ -11,12 +11,12 @@ type FileSystemNode interface {
 
 // File Leaf node: file
 type File struct {
-	name string
-	size int
+	Name string
+	Size int
 }
 
 func (f *File) List() string {
-	return fmt.Sprintf("File: %s (%dKB)", f.name, f.size)
+	return fmt.Sprintf("File: %s (%dKB)", f.Name, f.Size)
 }
 
 func (f *File) Add(node FileSystemNode)    {}
@@ -24,12 +24,12 @@ func (f *File) Remove(node FileSystemNode) {}
 
 // Directory Container node: directory
 type Directory struct {
-	name     string
+	Name     string
 	children []FileSystemNode
 }
 
 func (d *Directory) List() string {
-	list := fmt.Sprintf("Directory: %s\n", d.name)
+	list := fmt.Sprintf("Directory: %s\n", d.Name)
 	for _, child := range d.children {
 		list += fmt.Sprintf("  ├─ %s\n", child.List())
 	}

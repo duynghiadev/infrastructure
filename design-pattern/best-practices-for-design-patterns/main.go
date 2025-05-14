@@ -13,43 +13,6 @@ import (
 	"fmt"
 )
 
-// Constructor functions for structs with unexported fields
-
-// NewStockTicker creates a new StockTicker
-func NewStockTicker(symbol string, price float64) *observer.StockTicker {
-	return &observer.StockTicker{
-		symbol:    symbol,
-		price:     price,
-		observers: []observer.Observer{},
-	}
-}
-
-// NewInvestor creates a new Investor
-func NewInvestor(name string) *observer.Investor {
-	return &observer.Investor{
-		name: name,
-	}
-}
-
-// NewInsertCommand creates a new InsertCommand
-func NewInsertCommand(receiver *command.DatabaseReceiver, table string, columns, values []string) *command.InsertCommand {
-	return &command.InsertCommand{
-		receiver:   receiver,
-		table:      table,
-		columns:    columns,
-		values:     values,
-		prevValues: make(map[string]string),
-	}
-}
-
-// NewFile creates a new File
-func NewFile(name string, size int) *composite.File {
-	return &composite.File{
-		name: name,
-		size: size,
-	}
-}
-
 func main() {
 	// Singleton Pattern
 	fmt.Println("=================")
@@ -75,9 +38,9 @@ func main() {
 	fmt.Println("=================")
 	fmt.Println("Observer Pattern")
 	fmt.Println("=================")
-	ticker := NewStockTicker("AAPL", 150.0)
-	investor1 := NewInvestor("Alice")
-	investor2 := NewInvestor("Bob")
+	ticker := &observer.StockTicker{Symbol: "AAPL", Price: 150.0, Observers: []observer.Observer{}}
+	investor1 := &observer.Investor{Name: "Alice"}
+	investor2 := &observer.Investor{Name: "Bob"}
 	ticker.Attach(investor1)
 	ticker.Attach(investor2)
 	ticker.Notify("AAPL price updated to $150.0")
@@ -97,9 +60,9 @@ func main() {
 	fmt.Println("Strategy Pattern")
 	fmt.Println("=================")
 	checkout := &strategy.CheckoutContext{}
-	checkout.SetStrategy(&strategy.PercentDiscount{rate: 0.1})
+	checkout.SetStrategy(&strategy.PercentDiscount{Rate: 0.1})
 	fmt.Printf("Percent Discount (10%% off $100): $%.2f\n", checkout.CalculateFinalAmount(100.0))
-	checkout.SetStrategy(&strategy.FixedDiscount{offset: 20.0})
+	checkout.SetStrategy(&strategy.FixedDiscount{Offset: 20.0})
 	fmt.Printf("Fixed Discount ($20 off $100): $%.2f\n", checkout.CalculateFinalAmount(100.0))
 	fmt.Println()
 
@@ -117,7 +80,13 @@ func main() {
 	fmt.Println("Command Pattern")
 	fmt.Println("=================")
 	db := &command.DatabaseReceiver{}
-	cmd := NewInsertCommand(db, "users", []string{"name", "email"}, []string{"John", "john@example.com"})
+	cmd := &command.InsertCommand{
+		Receiver:   db,
+		Table:      "users",
+		Columns:    []string{"name", "email"},
+		Values:     []string{"John", "john@example.com"},
+		PrevValues: make(map[string]string),
+	}
 	cmd.Execute()
 	cmd.Undo()
 	fmt.Println()
@@ -126,10 +95,10 @@ func main() {
 	fmt.Println("=================")
 	fmt.Println("Composite Pattern")
 	fmt.Println("=================")
-	root := &composite.Directory{name: "root"}
-	home := &composite.Directory{name: "home"}
-	file1 := NewFile("file1.txt", 100)
-	file2 := NewFile("file2.txt", 200)
+	root := &composite.Directory{Name: "root"}
+	home := &composite.Directory{Name: "home"}
+	file1 := &composite.File{Name: "file1.txt", Size: 100}
+	file2 := &composite.File{Name: "file2.txt", Size: 200}
 	root.Add(home)
 	home.Add(file1)
 	home.Add(file2)

@@ -28,20 +28,20 @@ type Command interface {
 
 // InsertCommand Insert command
 type InsertCommand struct {
-	receiver   *DatabaseReceiver
-	table      string
-	columns    []string
-	values     []string
-	prevValues map[string]string // Store old values for rollback
+	Receiver   *DatabaseReceiver
+	Table      string
+	Columns    []string
+	Values     []string
+	PrevValues map[string]string
 }
 
 func (c *InsertCommand) Execute() error {
 	// Execute the insert logic and record the old values
-	c.prevValues = make(map[string]string) // Initialize empty map for previous values
-	return c.receiver.ExecuteSQL(fmt.Sprintf("INSERT INTO %s VALUES (%s)", c.table, c.values))
+	c.PrevValues = make(map[string]string) // Initialize empty map for previous values
+	return c.Receiver.ExecuteSQL(fmt.Sprintf("INSERT INTO %s VALUES (%s)", c.Table, c.Values))
 }
 
 func (c *InsertCommand) Undo() error {
-	// Use prevValues to roll back the insert operation
-	return c.receiver.Rollback()
+	// Use PrevValues to roll back the insert operation
+	return c.Receiver.Rollback()
 }

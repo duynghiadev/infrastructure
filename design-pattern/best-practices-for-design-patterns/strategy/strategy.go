@@ -7,21 +7,21 @@ type PromotionStrategy interface {
 
 // PercentDiscount Percentage discount strategy
 type PercentDiscount struct {
-	rate float64 // Discount rate (0.1 = 10%)
+	Rate float64 // (Discount rate, e.g., 0.1 = 10%)
 }
 
 func (p *PercentDiscount) Calculate(amount float64) float64 {
-	return amount * (1 - p.rate)
+	return amount * (1 - p.Rate)
 }
 
 // FixedDiscount Fixed amount discount strategy
 type FixedDiscount struct {
-	offset float64 // Fixed reduction amount
+	Offset float64 // (Fixed reduction amount)
 }
 
 func (f *FixedDiscount) Calculate(amount float64) float64 {
-	if amount > f.offset {
-		return amount - f.offset
+	if amount > f.Offset {
+		return amount - f.Offset
 	}
 	return amount
 }
