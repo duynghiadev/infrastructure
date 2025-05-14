@@ -36,7 +36,7 @@ func (s *e2eTestSuite) SetupSuite() {
 		Port:                  "8081",
 		SigningKey:            "AA",
 		HashSalt:              "AAA",
-		DatabaseConnectionURL: "host=localhost user=postgres password=password1 dbname=todos port=5432",
+		DatabaseConnectionURL: "host=localhost user=postgres password=duynghia123 dbname=todos port=5432",
 		TokenTTL:              86400,
 		JwtSecret:             "abcaa",
 	}
