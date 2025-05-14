@@ -1,0 +1,42 @@
+# API Requests for Testing
+
+@baseUrl = http://localhost:8081/api/v1
+@contentType = application/json
+@jwt_token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDczMTYyNjMsImlhdCI6MTc0NzIyOTg2MywiaXNzIjoiZ28tdG9kb3MiLCJ1c2VybmFtZSI6ImR1eSBuZ2hpYSA0IiwidXNlcklkIjoiN2M2YzA3NmItOGNlZC00M2UyLTgxYWYtNDdiZmMyOWI0NzY4In0.x24_k6fHgqKQoUEVc2OMUZ15cHakE8RhU72vk9mEnBw
+
+### Register User
+POST {{baseUrl}}/auth/register
+Content-Type: {{contentType}}
+
+{
+  "username": "duy nghia 4",
+  "password": "12345",
+  "limit": 200
+}
+
+### Login
+POST {{baseUrl}}/auth/login
+Content-Type: {{contentType}}
+
+{
+  "username": "duy nghia 4",
+  "password": "12345"
+}
+
+### Create Todo
+POST {{baseUrl}}/todos/
+Content-Type: {{contentType}}
+Authorization: Bearer {{jwt_token}}
+
+{
+  "content": "test post 4"
+}
+
+### Get User's Todos
+GET {{baseUrl}}/todos/a17ab7c8-d2a6-4af2-a8ae-bc45cdcc65d8
+Content-Type: {{contentType}}
+Authorization: Bearer {{jwt_token}}
+
+### Get All Todos
+GET {{baseUrl}}/todos/
+Content-Type: {{contentType}}
